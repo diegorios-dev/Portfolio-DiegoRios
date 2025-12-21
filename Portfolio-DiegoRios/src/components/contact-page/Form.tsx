@@ -12,7 +12,7 @@ const Form: React.FC = () => {
     const [form, setForm] = useState<ContactForm>({
         phone: '',
         fullName: '',
-        email: '',
+        email: ' ',
         message: '',
     });
 
