@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PortfolioHero from '../../components/portfolio-page/Hero';
+import ProjectsGrid from '../../components/portfolio-page/ProjectsGrid';
+import { portfolioData } from '../../data/portfolio-data';
+
+const portfolioPageData = portfolioData.portfolio;
+---
+
+<Layout title="Portfolio - Personal Website">
+    <PortfolioHero
+        title="Descubre los mejores proyectos de mi colección"
+        subtitle="Vamos a ver los proyectos más destacados."
+        backgroundImage="/imgFondo1.png"
+        client:load
+    />
+    
+    <ProjectsGrid
+        items={portfolioPageData.items}
+        client:load
+    />
+</Layout>

@@ -1,0 +1,32 @@
+---
+import AnimatedTitle from '../components/AnimatedTitle';
+import Layout from '../layouts/Layout.astro';
+import AboutContent from '../components/about-page/AboutContent';
+import { portfolioData } from '../data/portfolio-data';
+
+const aboutPageData = portfolioData.about;
+---
+
+<Layout title="Sobre mi - Personal Website">
+    <div class="pt-8 pb-10 overflow-hidden md:pb-20 lg:pt-[72px] lg:pb-[20px]">
+        <div class="container">
+            <AnimatedTitle
+                title="Sobre mi"
+                className="mb-10 md:mb-20 lg:mb-[100px]"
+                titleClassName="text-[114px] flex-shrink-0 leading-none font-Helvetica tracking-[1.59px] sm:text-[190px] md:text-[220px] lg:text-[300px] lg:tracking-[5.59px] xl:text-[464px]"
+                client:load
+            />        
+        </div>
+    </div>
+    
+    <AboutContent
+        description={aboutPageData.description}
+        education_title={aboutPageData.education_title}
+        education_text={aboutPageData.education_text}
+        education_degrees={aboutPageData.education_degrees}
+        work_history_title={aboutPageData.work_history_title}
+        work_history_text={aboutPageData.work_history_text}
+        work_history_items={aboutPageData.work_history_items}
+        client:load
+    />
+</Layout>

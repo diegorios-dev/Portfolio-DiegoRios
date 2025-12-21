@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect fill="#E5E7EB" width="800" height="800"/>
+  <circle cx="400" cy="350" r="100" fill="#9CA3AF"/>
+  <path d="M 400 450 Q 450 470 500 500 Q 550 530 600 580 L 600 800 L 200 800 L 200 580 Q 250 530 300 500 Q 350 470 400 450 Z" fill="#9CA3AF"/>
+  <text x="400" y="750" font-family="Arial, sans-serif" font-size="24" fill="#6B7280" text-anchor="middle">Avatar Placeholder</text>
+</svg>
