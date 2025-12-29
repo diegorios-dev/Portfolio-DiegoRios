@@ -44,19 +44,19 @@ const AboutContent: React.FC<Props> = ({
                 {/* Descripción principal */}
                 <ContentManager
                     items={description.nodes}
-                    className="text-base md:text-lg text-appGray-400 mb-12 md:mb-16 lg:mb-20"
+                    className="text-base md:text-lg text-content-muted dark:text-content-dark-muted mb-12 md:mb-16 lg:mb-20 transition-colors duration-300"
                 />
 
                 {/* Education Section */}
                 <div className="mb-12 md:mb-16 lg:mb-20">
                     <div className="flex items-start gap-3 md:gap-4 mb-6">
-                        <div className="w-2 h-2 bg-appText rounded-full mt-2" />
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-appText">
+                        <div className="w-2 h-2 bg-content dark:bg-content-dark rounded-full mt-2 transition-colors duration-300" />
+                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-content dark:text-content-dark transition-colors duration-300">
                             {education_title}
                         </h2>
                     </div>
                     
-                    <p className="text-sm md:text-base text-appGray-400 mb-6">
+                    <p className="text-sm md:text-base text-content-muted dark:text-content-dark-muted mb-6 transition-colors duration-300">
                         {education_text}
                     </p>
                     
@@ -64,7 +64,7 @@ const AboutContent: React.FC<Props> = ({
                         {education_degrees.map((edu, index) => (
                             <span
                                 key={index}
-                                className="px-4 py-2 rounded-full border border-appGray-200 text-sm md:text-base text-appGray-500 font-medium"
+                                className="px-4 py-2 rounded-full border border-border-muted dark:border-border-dark-muted text-sm md:text-base text-content-muted dark:text-content-dark font-medium transition-colors duration-300"
                             >
                                 {edu.degree}
                             </span>
@@ -75,14 +75,14 @@ const AboutContent: React.FC<Props> = ({
                 {/* Work History Section */}
                 <div>
                     <div className="flex items-start gap-3 md:gap-4 mb-6">
-                        <div className="w-2 h-2 bg-appText rounded-full mt-2" />
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-appText">
+                        <div className="w-2 h-2 bg-content dark:bg-content-dark rounded-full mt-2 transition-colors duration-300" />
+                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-content dark:text-content-dark transition-colors duration-300">
                             {work_history_title}
                         </h2>
                     </div>
                     
                     {work_history_text.map((text, index) => (
-                        <p key={index} className="text-sm md:text-base text-appGray-400 mb-6">
+                        <p key={index} className="text-sm md:text-base text-content-muted dark:text-content-dark-muted mb-6 transition-colors duration-300">
                             {text}
                         </p>
                     ))}
@@ -91,7 +91,7 @@ const AboutContent: React.FC<Props> = ({
                         {work_history_items.map((work, index) => (
                             <span
                                 key={index}
-                                className="px-4 py-2 rounded-full border border-appGray-200 text-sm md:text-base text-appGray-500 font-medium"
+                                className="px-4 py-2 rounded-full border border-border-muted dark:border-border-dark-muted text-sm md:text-base text-content-muted dark:text-content-dark font-medium transition-colors duration-300"
                             >
                                 {work.company_name} • {new Date(work.from.timestamp).getFullYear()}
                             </span>

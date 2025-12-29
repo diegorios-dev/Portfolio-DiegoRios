@@ -24,20 +24,24 @@ interface Props {
 
 const ProjectsGrid: React.FC<Props> = ({ items }) => {
     return (
-        <section id="projects" className="py-10 md:py-16 lg:py-20">
+        <section id="projects" className="py-8 md:py-16 lg:py-20">
             <div className="container">
                 <div className="flex flex-col gap-6 lg:gap-8">
                     {items.map((project, index) => (
                         <a
                             key={index}
                             href={`/portfolio/${project.slug}`}
-                            className="group relative rounded-3xl overflow-hidden bg-appGray-50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                            className="group relative rounded-3xl overflow-hidden bg-surface-subtle dark:bg-surface-dark-subtle transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
                         >
                             <div className="relative h-[500px] overflow-hidden">
                                 <img
                                     src={project.cover_image.src}
                                     alt={project.cover_image.alt}
+                                    width={project.cover_image.width}
+                                    height={project.cover_image.height}
+                                    loading="lazy"
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    style={{ imageRendering: 'auto' }}
                                 />
                                 {/* Overlay con gradiente */}
                                 <div 
@@ -49,11 +53,11 @@ const ProjectsGrid: React.FC<Props> = ({ items }) => {
                             </div>
                             
                             <div className="p-6 lg:p-8">
-                                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-appText mb-3 group-hover:text-opacity-80 transition-colors">
+                                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-content dark:text-content-dark mb-3 group-hover:opacity-80 transition-all duration-300">
                                     {project.title}
                                 </h3>
                                 
-                                <p className="text-sm md:text-base text-appGray-400 mb-4 line-clamp-2">
+                                <p className="text-sm md:text-base text-content-muted dark:text-content-dark-muted mb-4 line-clamp-2 transition-colors duration-300">
                                     {project.description.nodes[0]?.content[0]?.value}
                                 </p>
                                 
@@ -61,7 +65,7 @@ const ProjectsGrid: React.FC<Props> = ({ items }) => {
                                     {project.categories.map((category, idx) => (
                                         <span
                                             key={idx}
-                                            className="px-3 py-1 text-xs md:text-sm rounded-full bg-appGray-100 text-appGray-500 font-medium"
+                                            className="px-3 py-1 text-xs md:text-sm rounded-full bg-surface-muted dark:bg-surface-dark-muted text-content-muted dark:text-content-dark font-medium transition-colors duration-300"
                                         >
                                             {category}
                                         </span>

@@ -18,7 +18,7 @@ export const portfolioData = {
         },
         image: {
             alt: 'Diego Rios - Full Stack Developer',
-            src: '/imgPortfolio3.jpeg',
+            src: '/imgMia.webp',
         },
         seo: {
             title: 'Diego Rios - Desarrollador Full Stack',
@@ -129,14 +129,14 @@ export const portfolioData = {
                 theme: '#6366F1',
                 cover_image: {
                     alt: 'Proximamente',
-                    src: '/Proximamente.jpg',
+                    src: '',
                     width: 800,
                     height: 600
                 },
                 gallery: [
                     {
                         alt: 'Proximamente',
-                        src: '/proyect1.jpg',
+                        src: '',
                         width: 800,
                         height: 600
                     }

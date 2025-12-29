@@ -52,15 +52,15 @@ const HomePortfolio: React.FC<Props> = ({
             <div className="container">
                 <div className="mb-8 md:flex md:items-start md:justify-between md:gap-16 lg:gap-20 lg:mb-10">
                     <div className="flex items-center mb-[14px] md:mt-4">
-                        <div className="w-1.5 h-1.5 bg-appText rounded-full mr-2 lg:w-2.5 lg:h-2.5 lg:mr-4 lg:mt-1" />
-                        <h2 className="text-lg leading-none tracking-[-0.41px] font-Helvetica lg:text-[32px] lg:leading-none">
+                        <div className="w-1.5 h-1.5 bg-content dark:bg-content-dark rounded-full mr-2 lg:w-2.5 lg:h-2.5 lg:mr-4 lg:mt-1 transition-colors duration-300" />
+                        <h2 className="text-lg leading-none tracking-[-0.41px] font-Helvetica lg:text-[32px] lg:leading-none text-content dark:text-content-dark transition-colors duration-300">
                             {title}
                         </h2>
                     </div>
                     <div>
                         <ContentManager
                             items={description.nodes}
-                            className="text-sm leading-[1.4] tracking-[-0.41px] text-appGray-400 md:max-w-[761px] lg:text-base lg:leading-[1.4]"
+                            className="text-sm leading-[1.4] tracking-[-0.41px] text-content-muted dark:text-content-dark-muted md:max-w-[761px] lg:text-base lg:leading-[1.4] transition-colors duration-300"
                         />
                     </div>
                 </div>
@@ -100,6 +100,9 @@ const HomePortfolio: React.FC<Props> = ({
                                                     <img
                                                         src={galleryItem.src}
                                                         alt={galleryItem.alt}
+                                                        width={galleryItem.width}
+                                                        height={galleryItem.height}
+                                                        loading="lazy"
                                                         className={classNames(
                                                             'size-full aspect-[1.45] object-cover rounded-3xl overflow-hidden',
                                                             index % 2 === 2 ||
@@ -107,6 +110,7 @@ const HomePortfolio: React.FC<Props> = ({
                                                                 ? 'xl:aspect-[1.45]'
                                                                 : 'xl:aspect-[1.84]',
                                                         )}
+                                                        style={{ imageRendering: 'auto' }}
                                                     />
                                                 </SwiperSlide>
                                             ),

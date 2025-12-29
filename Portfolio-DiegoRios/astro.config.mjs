@@ -6,4 +6,13 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
     integrations: [tailwind(), react()],
+    image: {
+        // Configuración para optimización de imágenes
+        service: {
+            entrypoint: 'astro/assets/services/sharp',
+            config: {
+                limitInputPixels: false,
+            },
+        },
+    },
 });
