@@ -42,7 +42,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
     className = '', 
     variant = 'default' 
 }) => {
-    const { theme, toggleTheme, isDark } = useTheme();
+    const { toggleTheme, isDark } = useTheme();
 
     const baseStyles = 'relative flex items-center justify-center transition-all duration-300';
     
