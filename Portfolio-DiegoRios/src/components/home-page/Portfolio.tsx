@@ -128,7 +128,7 @@ const HomePortfolio: React.FC<Props> = ({
                                     </div>
                                 </div>
                             </a>
-                            {item.gallery.length > 0 && (
+                            {item.gallery && item.gallery.length > 0 && (
                                 <div
                                     className={`homePortfolio--galleryPagination homePortfolio--galleryPagination_${index} mt-6 lg:mt-8`}
                                 />
