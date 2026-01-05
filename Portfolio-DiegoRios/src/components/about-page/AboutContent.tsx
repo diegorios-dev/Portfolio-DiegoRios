@@ -44,11 +44,11 @@ const AboutContent: React.FC<Props> = ({
                 {/* Descripción principal */}
                 <ContentManager
                     items={description.nodes}
-                    className="text-base md:text-lg text-content-muted dark:text-content-dark-muted mb-12 md:mb-16 lg:mb-20 transition-colors duration-300"
+                    className="text-base md:text-lg text-content-muted dark:text-content-dark-muted mb-12 md:mb-16 transition-colors duration-300"
                 />
 
                 {/* Education Section */}
-                <div className="mb-12 md:mb-16 lg:mb-20">
+                <div className="mb-12 md:mb-16">
                     <div className="flex items-start gap-3 md:gap-4 mb-6">
                         <div className="w-2 h-2 bg-content dark:bg-content-dark rounded-full mt-2 transition-colors duration-300" />
                         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-content dark:text-content-dark transition-colors duration-300">

@@ -54,7 +54,7 @@ const Header: React.FC = () => {
             {/* Mobile Menu Content */}
             <div
                 className={classNames(
-                    'fixed inset-0 z-50 md:hidden flex flex-col transition-all duration-300 overflow-y-auto',
+                    'fixed inset-0 z-[60] md:hidden flex flex-col transition-all duration-300 overflow-y-auto',
                     {
                         'opacity-100 pointer-events-auto': showMobileMenu,
                         'opacity-0 pointer-events-none': !showMobileMenu,
@@ -71,10 +71,10 @@ const Header: React.FC = () => {
                         />
                     </a>
                     <div className="flex items-center gap-2">
-                        <ThemeToggle variant="mobile" className="text-white" />
+                        <ThemeToggle variant="mobile" className="text-white relative z-[100]" />
                         <button
                             type="button"
-                            className="w-11 h-11 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-200"
+                            className="w-11 h-11 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-200 relative z-[100]"
                             aria-label="Cerrar menú"
                             onClick={toggleMobileMenu}
                         >
@@ -128,7 +128,7 @@ const Header: React.FC = () => {
                     
                     {/* CTA Button */}
                     <a 
-                        href="/cv.pdf"
+                        href="/Cv_Diego_Rios.pdf"
                         download
                         className="inline-flex items-center gap-2 px-6 py-3 border border-white/30 rounded-full text-sm font-medium uppercase tracking-widest text-white/90 hover:bg-white hover:text-[#0a0a0a] transition-all duration-300"
                     >
@@ -214,7 +214,7 @@ const Header: React.FC = () => {
                     >
                         <div
                             dangerouslySetInnerHTML={{ __html: MenuIcon }}
-                            className="w-6 h-6"
+                            className="w-6 h-6 text-content dark:text-white"
                         />
                     </button>
                 </nav>
