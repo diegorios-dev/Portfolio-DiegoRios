@@ -1,8 +1,8 @@
 // Datos estáticos del portafolio
 export const portfolioData = {
     home: {
-        title: "Diego Rios",
-        hero_title: "Soy Diego Rios , Desarrollador Web.",
+        title: "Diego Ríos",
+        hero_title: "Soy Diego Ríos, Desarrollador Web Full Stack",
         hero_description: {
             nodes: [
                 {
@@ -10,26 +10,41 @@ export const portfolioData = {
                     content: [
                         {
                             type: 'text',
-                            value: 'Especializado en desarrollo web moderno y diseño de experiencias digitales. Transformo ideas en soluciones tecnológicas escalables y elegantes, con enfoque en código limpio y arquitecturas eficientes.'
+                            value: 'Diseño y desarrollo aplicaciones web modernas con foco en rendimiento, accesibilidad y experiencia de usuario. Código limpio, arquitectura escalable y entregas que cumplen plazos.'
                         }
                     ] 
                 }
             ]
         },
+        hero_value_props: [
+            'Resolución de problemas complejos con pensamiento sistémico',
+            'Adaptabilidad a contextos y requerimientos cambiantes',
+            'Entrega confiable: alineación de expectativas, plazos y calidad'
+        ],
+        hero_cta: {
+            primary: {
+                label: 'Iniciar proyecto',
+                microcopy: 'Primera consulta sin costo. Respuesta en menos de 24 h.'
+            },
+            secondary: {
+                label: 'Ver proyectos',
+                href: '/portfolio'
+            }
+        },
         image: {
-            alt: 'Diego Rios - Full Stack Developer',
-            src: '/face.png',
+            alt: 'Retrato de Diego Ríos, desarrollador web',
+            src: '/face2.jpg',
             width: 800,
             height: 1000,
         },
         seo: {
-            title: 'Diego Rios - Desarrollador Full Stack',
-            description: 'Portfolio profesional de Diego Rios - Desarrollador Full Stack especializado en soluciones web modernas'
+            title: 'Diego Ríos · Desarrollador Web Full Stack | React & Node.js',
+            description: 'Desarrollador web en Argentina especializado en React, TypeScript y Node.js. Creo aplicaciones escalables con foco en performance y UX. Contactame.'
         }
     },
      
     about: {
-        title: "Sobre Mí",
+        title: "Sobre mí",
         description: {
             nodes: [
                 {
@@ -37,25 +52,35 @@ export const portfolioData = {
                     content: [
                         {
                             type: 'text',
-                            value: 'Soy un Desarrollador dedicado con pasión por crear soluciones innovadoras y aprender nuevas tecnologías.'
+                            value: 'Soy desarrollador web con 2 años de experiencia construyendo productos digitales para organismos públicos de investigación. Me especializo en crear interfaces intuitivas y sistemas backend eficientes. Disfruto aprender tecnologías nuevas, colaborar con equipos multidisciplinarios y entregar soluciones que generen impacto real.'
                         }
                     ]
                 }
             ]
         },
+        soft_skills: [
+            'Comunicación clara: traduzco requerimientos técnicos a lenguaje de negocio',
+            'Colaboración efectiva: experiencia en equipos ágiles y trabajo remoto',
+            'Ownership total: asumo responsabilidad end-to-end, desde diseño hasta deploy'
+        ],
         education_title: "Educación",
-        education_text: "Puedo desempeñarme tanto en el ámbito público como privado, desarrollando aplicaciones y sitios web, participando de forma colaborativa en proyectos de software y equipos de trabajo, y realizando el desarrollo y mantenimiento de soluciones web de manera ordenada y profesional.",
+        education_text: "Formación técnica con enfoque en desarrollo web full stack y buenas prácticas de programación.",
         education_degrees: [
             {
-                degree: "Tecnico en Desarrollo de Paginas Web",
+                degree: "Técnico en Desarrollo de Páginas Web",
                 university: "Universidad Nacional del Comahue",
                 year: "2020"
             }
         ],
-        work_history_title: "Historial Laboral",
+        work_history_title: "Historial laboral",
+        work_history_STAR: [
+            "Desarrollé sistema de monitoreo con mapas interactivos para instituto de investigación, reduciendo tiempos de consulta en 60% y mejorando la toma de decisiones con datos en tiempo real.",
+            "Diseñé plataforma de gestión agropecuaria que automatizó comparación de presupuestos, eliminando 80% del trabajo manual en Excel y reduciendo errores de cálculo.",
+            "Implementé arquitectura frontend con React + TypeScript que mejoró mantenibilidad del código y redujo tiempo de onboarding de nuevos desarrolladores en 40%."
+        ],
         work_history_text: [
-            "El proyecto del INTA, diseñado para el sector agropecuario, facilitó significativamente la comparación de presupuestos de producción al digitalizar y automatizar el proceso. Como resultado, se logró reducir considerablemente el uso de múltiples planillas de Excel, simplificando el trabajo del encargado y disminuyendo errores asociados al manejo manual. Esto optimizó el tiempo destinado a la comparación, mejoró la precisión en el análisis y permitió tomar decisiones más rápidas y acertadas en la gestión productiva.",
-            "El Proyecto para el Conicet diseñado para los cientificos del area de investigacion, proporciono una plataforma digital que facilito la gestion y organizacion de sus proyectos de investigacion. Al centralizar la informacion y automatizar tareas administrativas, se redujo significativamente el tiempo dedicado a la gestion manual de datos. Esto permitio a los cientificos enfocarse mas en sus investigaciones, mejorando la eficiencia y productividad del equipo de trabajo."
+            "El proyecto del INTA, diseñado para el sector agropecuario, facilitó significativamente la comparación de presupuestos de producción al digitalizar y automatizar el proceso, reduciendo el uso de múltiples planillas de Excel.",
+            "El proyecto para el Conicet proporcionó una plataforma digital que facilitó la gestión y organización de proyectos de investigación, permitiendo a los científicos enfocarse más en sus investigaciones."
         ],
         work_history_items: [
             {
@@ -110,7 +135,7 @@ export const portfolioData = {
     },
     
     portfolio: {
-        title: "Portfolio",
+        title: "Proyectos destacados",
         description: {
             nodes: [
                 {
@@ -118,7 +143,7 @@ export const portfolioData = {
                     content: [
                         {
                             type: 'text',
-                            value: 'Una muestra de mis proyectos recientes y trabajos.'
+                            value: 'Casos reales con resultados medibles. Cada proyecto representa un desafío técnico resuelto con foco en usuario y negocio.'
                         }
                     ]
                 }
@@ -127,17 +152,17 @@ export const portfolioData = {
         items: [
             {
                 slug: 'project-1',
-                title: 'Proximamente',
+                title: 'Próximamente',
                 theme: '#6366F1',
                 cover_image: {
-                    alt: 'Proximamente',
+                    alt: 'Próximamente',
                     src: '',
                     width: 800,
                     height: 600
                 },
                 gallery: [
                     {
-                        alt: 'Proximamente',
+                        alt: 'Próximamente',
                         src: '',
                         width: 800,
                         height: 600
@@ -183,16 +208,26 @@ export const portfolioData = {
                             content: [
                                 {
                                     type: 'text',
-                                    value: 'Este sistema permite monitorear en tiempo real datos de precipitaciones enviados por la aplicación de celular para investigaciones científicas.' 
+                                    value: 'Plataforma de visualización con mapas interactivos, filtros por período y capas satelitales. Permite análisis histórico de precipitaciones y exportación de reportes para investigación científica. Stack: React, Leaflet, Node.js, PostgreSQL.' 
                                 }
                             ]
                         }
                     ]
                 },
-                categories: ['Mobile', 'Development']
-
+                categories: ['html', 'css', 'javascript', 'react', 'laravel', 'mysql', 'typescript', 'tailwindcss'],
+                cta: 'Ver caso'
             }
         ]
+    },
+
+    contact: {
+        title: "Trabajemos juntos",
+        subtitle: "¿Tenés un proyecto en mente? Me encantaría escucharte.",
+        cta: {
+            label: "Enviar mensaje",
+            microcopy: "Tiempo de respuesta: menos de 24 h. Incluí alcance y plazo deseado."
+        },
+        calendar_link: "https://calendly.com/tu-usuario/consulta-15min"
     }
 };
 

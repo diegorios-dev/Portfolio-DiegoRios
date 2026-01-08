@@ -12,13 +12,14 @@ const portfolioEntries = portfolioData.portfolio.items;
 ---
 
 <Layout
-    title={`${homePageMeta.seo?.title || homePageMeta.title} - Personal Website`}
+    title={homePageMeta.seo?.title || `${homePageMeta.title} - Desarrollador Web Full Stack`}
 >
     <div>
         <HomeHero
             title={homePageMeta.hero_title}
             description={homePageMeta.hero_description}
             image={homePageMeta.image}
+            valueProps={homePageMeta.hero_value_props}
             client:load
         />
         <HomeAbout

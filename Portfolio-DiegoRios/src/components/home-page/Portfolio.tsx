@@ -124,7 +124,7 @@ const HomePortfolio: React.FC<Props> = ({
                                     }}
                                 >
                                     <div className="px-6 py-4 bg-appText rounded-[32px] leading-none font-medium tracking-[-0.41px] text-white">
-                                        Open project
+                                        Ver caso
                                     </div>
                                 </div>
                             </a>

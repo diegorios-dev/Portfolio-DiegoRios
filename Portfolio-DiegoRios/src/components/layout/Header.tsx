@@ -24,7 +24,7 @@ const Header: React.FC = () => {
             href: '/',
         },
         {
-            label: 'Sobre Mí',
+            label: 'Sobre mí',
             href: '/about',
         },
         {

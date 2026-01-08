@@ -177,10 +177,10 @@ const Form: React.FC = () => {
                 {/* Header */}
                 <div className="text-center mb-8 md:mb-10">
                     <h2 className="text-3xl md:text-4xl font-bold text-content dark:text-content-dark mb-3">
-                        Contactame
+                        Contáctame
                     </h2>
                     <p className="text-content-muted dark:text-content-dark-muted text-base md:text-lg max-w-md mx-auto">
-                        ¿Tienes un proyecto en mente? Me encantaría escucharte.
+                        Cuéntame sobre tu proyecto, te respondo en menos de 24 horas.
                     </p>
                 </div>
 

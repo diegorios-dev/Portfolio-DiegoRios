@@ -3,6 +3,8 @@ import LinkedInIcon from '../../assets/icons/linkedin.svg?raw';
 
 const GitHubIcon = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
 
+const CheckIcon = `<svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 flex-shrink-0"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>`;
+
 interface MediaData {
     alt: string;
     src: string;
@@ -18,9 +20,10 @@ interface Props {
     title: string;
     description: RichTextData;
     image: MediaData;
+    valueProps?: string[];
 } 
 
-const HomeHero: React.FC<Props> = ({title,description,image}) => {
+const HomeHero: React.FC<Props> = ({title, description, image, valueProps}) => {
     
     const socials = [
         {
@@ -29,12 +32,19 @@ const HomeHero: React.FC<Props> = ({title,description,image}) => {
             href: 'https://www.linkedin.com/in/diego-rios-fullstack/',
         },
         {
-            label: 'Github',
+            label: 'GitHub',
             icon: GitHubIcon,
             href: 'https://github.com/diego-rios-fullstack/',
         }
-
     ];
+
+    const defaultValueProps = [
+    'Resolución de problemas complejos con pensamiento sistémico',
+    'Adaptabilidad a contextos y requerimientos cambiantes',
+    'Entrega confiable: alineación de expectativas, plazos y calidad'
+    ];
+
+    const bullets = valueProps || defaultValueProps;
 
     return (
         <section className="py-8 lg:pb-14">
@@ -43,35 +53,61 @@ const HomeHero: React.FC<Props> = ({title,description,image}) => {
                     {/* Info Card */}
                     <div className="relative bg-surface-subtle dark:bg-surface-dark-subtle rounded-3xl p-6 overflow-hidden xl:p-10 dark:border dark:border-white/[0.06] transition-colors duration-300">
                         <div className="relative z-10 h-full flex flex-col items-start">
-                            <h1 className="leading-[1.2] tracking-[-0.41px] mb-2.5 lg:text-[34px] lg:leading-[1.2] lg:mb-4 text-content dark:text-content-dark transition-colors duration-300">
+                            <h1 className="text-xl leading-[1.2] tracking-[-0.41px] mb-3 lg:text-[32px] lg:leading-[1.2] lg:mb-4 text-content dark:text-content-dark transition-colors duration-300">
                                 {title}
                             </h1>
                             <ContentManager
                                 items={description.nodes}
-                                className="text-xs leading-[1.4] tracking-[-0.41px] text-content-muted dark:text-content-dark-muted pr-[70px] mb-8 lg:text-base lg:leading-[1.4] lg:mb-8 transition-colors duration-300"
+                                className="text-sm leading-[1.5] tracking-[-0.41px] text-content-muted dark:text-content-dark-muted mb-5 lg:text-base lg:leading-[1.5] lg:mb-6 transition-colors duration-300"
                             />
-                            <a
-                                href="/contact"
-                                className="flex px-[18px] py-[14px] rounded-[32px] border border-border-muted dark:border-white/20 text-xs leading-none tracking-[-0.41px] font-medium text-content-muted dark:text-content-dark-muted uppercase mb-14 transition-all duration-300 hover:bg-content dark:hover:bg-content-dark hover:text-content-inverted dark:hover:text-content-dark-inverted hover:border-content dark:hover:border-content-dark lg:px-6 lg:py-4 lg:text-sm lg:leading-none"
-                            >
-                                Iniciar Proyecto
-                            </a>
-                            <ul className="flex items-center gap-3 mt-auto lg:gap-5">
+                            
+                            {/* Value Props */}
+                            <ul className="space-y-2.5 mb-6 lg:mb-8">
+                                {bullets.map((prop, index) => (
+                                    <li key={index} className="flex items-start gap-2.5 text-xs lg:text-sm text-content-muted dark:text-content-dark-muted">
+                                        <span 
+                                            dangerouslySetInnerHTML={{ __html: CheckIcon }} 
+                                            className="mt-0.5 text-accent-blue dark:text-accent-blue-dark" 
+                                        />
+                                        <span>{prop}</span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            {/* CTAs */}
+                            <div className="flex flex-col sm:flex-row gap-3 mb-8 lg:mb-10 w-full sm:w-auto">
+                                <a
+                                    href="/contact"
+                                    className="flex items-center justify-center px-5 py-3.5 rounded-xl bg-accent-blue dark:bg-accent-blue-dark text-white text-sm font-medium transition-all duration-300 hover:opacity-90 hover:scale-[1.02] shadow-lg shadow-accent-blue/20 dark:shadow-accent-blue-dark/20"
+                                >
+                                    Iniciar proyecto
+                                </a>
+                                <a
+                                    href="/portfolio"
+                                    className="flex items-center justify-center px-5 py-3.5 rounded-xl border border-border-muted dark:border-white/20 text-sm font-medium text-content-muted dark:text-content-dark-muted transition-all duration-300 hover:bg-content dark:hover:bg-content-dark hover:text-content-inverted dark:hover:text-content-dark-inverted hover:border-content dark:hover:border-content-dark"
+                                >
+                                    Ver proyectos
+                                </a>
+                            </div>
+
+                            {/* Socials */}
+                            <ul className="flex items-center gap-4 mt-auto">
                                 {socials.map((item, index) => (
                                     <li key={index}>
                                         <a
                                             href={item.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center text-content dark:text-content-dark transition-colors duration-300 hover:opacity-70"
+                                            className="flex items-center text-content dark:text-content-dark transition-all duration-300 hover:text-accent-blue dark:hover:text-accent-blue-dark"
+                                            aria-label={`Visitar perfil de ${item.label}`}
                                         >
                                             <div
                                                 dangerouslySetInnerHTML={{
                                                     __html: item.icon,
                                                 }}
-                                                className="w-4 h-4 mr-1.5"
+                                                className="w-5 h-5 mr-2"
                                             />
-                                            <span className="text-xs leading-none tracking-[-0.41px] lg:text-base lg:leading-none">
+                                            <span className="text-sm leading-none tracking-[-0.41px] lg:text-base lg:leading-none">
                                                 {item.label}
                                             </span>
                                         </a>
