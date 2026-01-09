@@ -208,14 +208,19 @@ export const portfolioData = {
                             content: [
                                 {
                                     type: 'text',
-                                    value: 'Plataforma de visualización con mapas interactivos, filtros por período y capas satelitales. Permite análisis histórico de precipitaciones y exportación de reportes para investigación científica. Stack: React, Leaflet, Node.js, PostgreSQL.' 
+                                    value: 'Plataforma de visualización con mapas interactivos, filtros por período y capas satelitales. Permite análisis histórico de precipitaciones y exportación de reportes para investigación científica. Stack: React, Leaflet, Laravel, MySQL , PHP.' 
                                 }
                             ]
                         }
                     ]
                 },
                 categories: ['html', 'css', 'javascript', 'react', 'laravel', 'mysql', 'typescript', 'tailwindcss'],
-                cta: 'Ver caso'
+                cta: 'Ver caso',
+                github_links: {
+                    frontend: 'https://github.com/diegorios-dev/PlataformaWeb-Conicet',
+                    backend: 'https://github.com/diegorios-dev/Backend-Pluvia-Conicet',
+                    mobile: 'https://github.com/diegorios-dev/Pluvia-Conicet-App'
+                }
             }
         ]
     },
