@@ -34,7 +34,7 @@ const HomeHero: React.FC<Props> = ({title, description, image, valueProps}) => {
         {
             label: 'GitHub',
             icon: GitHubIcon,
-            href: 'https://github.com/diego-rios-fullstack/',
+            href: 'https://github.com/diegorios-dev',
         }
     ];
 
