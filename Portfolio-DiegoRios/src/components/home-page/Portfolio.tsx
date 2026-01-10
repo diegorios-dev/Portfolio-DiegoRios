@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { A11y, Pagination } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import { SwiperSlide, Swiper } from 'swiper/react';
@@ -6,6 +8,11 @@ import classNames from 'classnames';
 import ContentManager from '../ContentManager';
 import './portfolio.css';
 import 'swiper/css';
+
+// Register plugins
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 interface RichTextData {
     nodes: any[];
@@ -47,10 +54,62 @@ const HomePortfolio: React.FC<Props> = ({
     description,
     items,
 }) => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+    const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const ctx = gsap.context(() => {
+            // Header animation
+            gsap.fromTo(headerRef.current,
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: headerRef.current,
+                        start: 'top 85%',
+                    }
+                }
+            );
+
+            // Staggered card animations
+            cardsRef.current.forEach((card, index) => {
+                if (!card) return;
+
+                gsap.fromTo(card,
+                    { 
+                        opacity: 0, 
+                        y: 60,
+                        scale: 0.95
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.8,
+                        delay: index * 0.15,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 90%',
+                        }
+                    }
+                );
+            });
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, [items]);
+
     return (
-        <section className="pb-10 lg:pb-14">
+        <section ref={sectionRef} className="pb-10 lg:pb-14 overflow-hidden">
             <div className="container">
-                <div className="mb-8 md:flex md:items-start md:justify-between md:gap-16 lg:gap-20 lg:mb-10">
+                <div ref={headerRef} className="mb-8 md:flex md:items-start md:justify-between md:gap-16 lg:gap-20 lg:mb-10">
                     <div className="flex items-center mb-[14px] md:mt-4">
                         <div className="w-1.5 h-1.5 bg-content dark:bg-content-dark rounded-full mr-2 lg:w-2.5 lg:h-2.5 lg:mr-4 lg:mt-1 transition-colors duration-300" />
                         <h2 className="text-lg leading-none tracking-[-0.41px] font-Helvetica lg:text-[32px] lg:leading-none text-content dark:text-content-dark transition-colors duration-300">
@@ -68,8 +127,9 @@ const HomePortfolio: React.FC<Props> = ({
                     {items.map((item, index) => (
                         <div
                             key={index}
+                            ref={(el) => { cardsRef.current[index] = el; }}
                             className={classNames(
-                                'flex flex-col rounded-3xl p-6 lg:p-8 lg:pb-4',
+                                'portfolio-card flex flex-col rounded-3xl p-6 lg:p-8 lg:pb-4 transition-all duration-500 hover:shadow-2xl',
                                 index % 2 === 2 || index % 3 === 0
                                     ? 'xl:col-span-7'
                                     : 'xl:col-span-9',

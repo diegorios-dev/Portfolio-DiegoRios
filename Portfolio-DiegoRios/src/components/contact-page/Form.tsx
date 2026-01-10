@@ -1,5 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import FormText from './Text';
+
+// Register plugins
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 interface ContactForm {
     fullName: string;
@@ -61,6 +68,60 @@ const Form: React.FC = () => {
     });
 
     const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
+
+    // Animation refs
+    const containerRef = useRef<HTMLDivElement>(null);
+    const cardRef = useRef<HTMLDivElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+    const formFieldsRef = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    // Animation effect
+    useEffect(() => {
+        if (typeof window === 'undefined' || submitStatus === 'success') return;
+
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+            // Initial states
+            gsap.set(cardRef.current, { opacity: 0, y: 60, scale: 0.95 });
+            gsap.set(headerRef.current, { opacity: 0, y: 30 });
+            
+            const formFields = formFieldsRef.current?.querySelectorAll('.form-field');
+            if (formFields) {
+                gsap.set(formFields, { opacity: 0, x: -30 });
+            }
+            gsap.set(buttonRef.current, { opacity: 0, y: 20, scale: 0.9 });
+
+            // Animation sequence
+            tl.to(cardRef.current, { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                duration: 0.8,
+            })
+            .to(headerRef.current, { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.6 
+            }, '-=0.4')
+            .to(formFields || [], { 
+                opacity: 1, 
+                x: 0, 
+                duration: 0.5,
+                stagger: 0.1 
+            }, '-=0.3')
+            .to(buttonRef.current, { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                duration: 0.5,
+                ease: 'back.out(1.7)'
+            }, '-=0.2');
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, [submitStatus]);
 
     // 🔑 Tu Access Key de Web3Forms
     const WEB3FORMS_ACCESS_KEY = '167f7261-f395-4df5-a76c-17dc812bc331';
@@ -147,20 +208,20 @@ const Form: React.FC = () => {
         return (
             <div className="w-full max-w-2xl mx-auto">
                 <div className="bg-surface dark:bg-surface-dark-subtle rounded-2xl shadow-xl shadow-black/5 dark:shadow-black/20 p-8 md:p-12 border border-border dark:border-border-dark">
-                    <div className="flex flex-col items-center text-center animate-fadeIn">
+                    <div className="flex flex-col items-center text-center">
                         <div className="mb-6 animate-bounce">
                             <SuccessIcon />
                         </div>
-                        <h3 className="text-2xl font-semibold text-content dark:text-content-dark mb-3">
+                        <h3 className="text-2xl font-semibold text-content dark:text-content-dark mb-3 animate-fade-in-up">
                             ¡Mensaje enviado!
                         </h3>
-                        <p className="text-content-muted dark:text-content-dark-muted mb-8 max-w-md">
+                        <p className="text-content-muted dark:text-content-dark-muted mb-8 max-w-md animate-fade-in-up delay-100">
                             Gracias por contactarme. Te responderé lo antes posible.
                         </p>
                         <button
                             type="button"
                             onClick={resetForm}
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-accent-blue dark:text-accent-blue-dark border-2 border-accent-blue dark:border-accent-blue-dark hover:bg-accent-blue hover:text-white dark:hover:bg-accent-blue-dark dark:hover:text-white transition-all duration-200"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-accent-blue dark:text-accent-blue-dark border-2 border-accent-blue dark:border-accent-blue-dark hover:bg-accent-blue hover:text-white dark:hover:bg-accent-blue-dark dark:hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg animate-fade-in-up delay-200"
                         >
                             Enviar otro mensaje
                         </button>
@@ -171,11 +232,14 @@ const Form: React.FC = () => {
     }
 
     return (
-        <div className="w-full max-w-2xl mx-auto">
+        <div ref={containerRef} className="w-full max-w-2xl mx-auto">
             {/* Card Container */}
-            <div className="bg-surface dark:bg-surface-dark-subtle rounded-2xl shadow-xl shadow-black/5 dark:shadow-black/20 p-6 md:p-10 border border-border dark:border-border-dark">
+            <div 
+                ref={cardRef}
+                className="bg-surface dark:bg-surface-dark-subtle rounded-2xl shadow-xl shadow-black/5 dark:shadow-black/20 p-6 md:p-10 border border-border dark:border-border-dark transition-all duration-300 hover:shadow-2xl"
+            >
                 {/* Header */}
-                <div className="text-center mb-8 md:mb-10">
+                <div ref={headerRef} className="text-center mb-8 md:mb-10">
                     <h2 className="text-3xl md:text-4xl font-bold text-content dark:text-content-dark mb-3">
                         Contáctame
                     </h2>
@@ -193,43 +257,49 @@ const Form: React.FC = () => {
                     }}
                 >
                     {/* Grid para nombre y email en desktop */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <FormText
-                            error={!!formErrors.fullName}
-                            errorMessage={formErrors.fullName}
-                            value={form.fullName}
-                            label="Nombre completo"
-                            placeholder="Tu nombre"
-                            icon={<UserIcon />}
-                            onChange={(value) => handleUpdateForm('fullName', value)}
-                        />
-                        <FormText
-                            error={!!formErrors.email}
-                            errorMessage={formErrors.email}
-                            value={form.email}
-                            type="email"
-                            label="Correo electrónico"
-                            placeholder="tu@email.com"
-                            icon={<EmailIcon />}
-                            onChange={(value) => handleUpdateForm('email', value)}
-                        />
+                    <div ref={formFieldsRef} className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div className="form-field">
+                            <FormText
+                                error={!!formErrors.fullName}
+                                errorMessage={formErrors.fullName}
+                                value={form.fullName}
+                                label="Nombre completo"
+                                placeholder="Tu nombre"
+                                icon={<UserIcon />}
+                                onChange={(value) => handleUpdateForm('fullName', value)}
+                            />
+                        </div>
+                        <div className="form-field">
+                            <FormText
+                                error={!!formErrors.email}
+                                errorMessage={formErrors.email}
+                                value={form.email}
+                                type="email"
+                                label="Correo electrónico"
+                                placeholder="tu@email.com"
+                                icon={<EmailIcon />}
+                                onChange={(value) => handleUpdateForm('email', value)}
+                            />
+                        </div>
                     </div>
 
                     {/* Mensaje - ancho completo */}
-                    <FormText
-                        error={!!formErrors.message}
-                        errorMessage={formErrors.message}
-                        value={form.message}
-                        type="textarea"
-                        label="Mensaje"
-                        placeholder="Cuéntame sobre tu proyecto..."
-                        icon={<MessageIcon />}
-                        onChange={(value) => handleUpdateForm('message', value)}
-                    />
+                    <div className="form-field">
+                        <FormText
+                            error={!!formErrors.message}
+                            errorMessage={formErrors.message}
+                            value={form.message}
+                            type="textarea"
+                            label="Mensaje"
+                            placeholder="Cuéntame sobre tu proyecto..."
+                            icon={<MessageIcon />}
+                            onChange={(value) => handleUpdateForm('message', value)}
+                        />
+                    </div>
 
                     {/* Error global */}
                     {submitStatus === 'error' && (
-                        <div className="flex items-center gap-3 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 animate-fadeIn">
+                        <div className="flex items-center gap-3 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 animate-fade-in-up">
                             <svg className="w-5 h-5 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                             </svg>
@@ -241,9 +311,10 @@ const Form: React.FC = () => {
 
                     {/* Submit Button */}
                     <button
+                        ref={buttonRef}
                         type="submit"
                         disabled={submitStatus === 'loading'}
-                        className="w-full md:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-white bg-accent-blue dark:bg-accent-blue-dark hover:bg-accent-blue/90 dark:hover:bg-accent-blue-dark/90 focus:outline-none focus:ring-4 focus:ring-accent-blue/30 dark:focus:ring-accent-blue-dark/30 disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-accent-blue/25 dark:shadow-accent-blue-dark/25"
+                        className="group w-full md:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-white bg-accent-blue dark:bg-accent-blue-dark hover:bg-accent-blue/90 dark:hover:bg-accent-blue-dark/90 focus:outline-none focus:ring-4 focus:ring-accent-blue/30 dark:focus:ring-accent-blue-dark/30 disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shadow-lg shadow-accent-blue/25 dark:shadow-accent-blue-dark/25 hover:shadow-xl hover:shadow-accent-blue/30 dark:hover:shadow-accent-blue-dark/30"
                     >
                         {submitStatus === 'loading' ? (
                             <>
@@ -252,7 +323,9 @@ const Form: React.FC = () => {
                             </>
                         ) : (
                             <>
-                                <SendIcon />
+                                <span className="transition-transform duration-300 group-hover:rotate-12">
+                                    <SendIcon />
+                                </span>
                                 <span>Enviar mensaje</span>
                             </>
                         )}

@@ -6,7 +6,9 @@ import XIcon from '../../assets/icons/x.svg?raw';
 import ThemeToggle from '../ui/ThemeToggle';
 
 const Header: React.FC = () => {
+
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+    
     const timeNow = new Date().toLocaleTimeString('es-AR', {
         timeZone: 'America/Argentina/Buenos_Aires',
         hour: 'numeric',
@@ -119,7 +121,7 @@ const Header: React.FC = () => {
                 </nav>
 
                 {/* Spacer */}
-                <div className="flex-1 min-h-[60px]" />
+            <div className="flex-1 min-h-[60px]" />
 
                 {/* Footer Section */}
                 <div className="container pb-10">
@@ -166,6 +168,7 @@ const Header: React.FC = () => {
                         </a>
                     </div>
                 </div>
+
             </div>
 
             {/* Desktop Header */}
