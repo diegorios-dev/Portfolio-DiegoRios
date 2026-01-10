@@ -45,7 +45,7 @@ const AboutContent: React.FC<Props> = ({
     work_history_items,
 }) => {
     return (
-        <section className="py-10 md:py-16 lg:py-20">
+        <section className="">
             <div className="relative container">
                 {/* Descripción principal */}
                 <ContentManager
