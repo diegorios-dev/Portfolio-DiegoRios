@@ -24,7 +24,7 @@ const AnimatedBackground: React.FC<Props> = ({
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const particlesRef = useRef<Particle[]>([]);
-    const animationRef = useRef<number>();
+    const animationRef = useRef<number | null>(null);
 
     useEffect(() => {
         if (!containerRef.current || typeof window === 'undefined') return;
