@@ -2,7 +2,7 @@
 export const portfolioData = {
     home: {
         title: "Diego Ríos",
-        hero_title: "Soy Diego Ríos, Desarrollador Web Full Stack",
+        hero_title: "Soy Diego Ríos,\nDesarrollador Web Full Stack",
         hero_description: {
             nodes: [
                 {
@@ -60,76 +60,35 @@ export const portfolioData = {
         },
         soft_skills: [
             'Comunicación clara: traduzco requerimientos técnicos a lenguaje de negocio',
-            'Colaboración efectiva: experiencia en equipos ágiles y trabajo remoto',
-            'Ownership total: asumo responsabilidad end-to-end, desde diseño hasta deploy'
+            'Colaboración efectiva: experiencia en equipos ágiles y trabajo remoto'
         ],
         education_title: "Educación",
-        education_text: "Formación técnica con enfoque en desarrollo web full stack y buenas prácticas de programación.",
+        education_text: "Formación técnica con enfoque en Desarrollo Web full Stack y buenas prácticas de programación.",
         education_degrees: [
             {
                 degree: "Técnico en Desarrollo de Páginas Web",
                 university: "Universidad Nacional del Comahue",
-                year: "2020"
+                year: "2025"
             }
         ],
         work_history_title: "Historial laboral",
-        work_history_STAR: [
-            "Desarrollé sistema de monitoreo con mapas interactivos para instituto de investigación, reduciendo tiempos de consulta en 60% y mejorando la toma de decisiones con datos en tiempo real.",
-            "Diseñé plataforma de gestión agropecuaria que automatizó comparación de presupuestos, eliminando 80% del trabajo manual en Excel y reduciendo errores de cálculo.",
-            "Implementé arquitectura frontend con React + TypeScript que mejoró mantenibilidad del código y redujo tiempo de onboarding de nuevos desarrolladores en 40%."
-        ],
-        work_history_text: [
-            "El proyecto del INTA, diseñado para el sector agropecuario, facilitó significativamente la comparación de presupuestos de producción al digitalizar y automatizar el proceso, reduciendo el uso de múltiples planillas de Excel.",
-            "El proyecto para el Conicet proporcionó una plataforma digital que facilitó la gestión y organización de proyectos de investigación, permitiendo a los científicos enfocarse más en sus investigaciones."
-        ],
         work_history_items: [
             {
                 company_name: "Conicet - Argentina",
-                job_title: "Desarrollador Full Stack",
-                duration: "2021 - Presente",
-                from: {
-                    timestamp: new Date('2021-01-01').getTime()
-                },
-                to: {
-                    timestamp: new Date().getTime()
-                },
-                description: {
-                    nodes: [
-                        {
-                            type: 'paragraph',
-                            content: [
-                                {
-                                    type: 'text',
-                                    value: 'Developing web applications and leading projects.'
-                                }
-                            ]
-                        }
-                    ]
-                }
+                year: 2025,
+                achievements: [
+                    "Desarrollé una solución Full Stack (Móvil/Web) para digitalizar el monitoreo climático en zonas rurales, ayudando a reducir las pérdidas de ganado en un 40% mediante la anticipación de sequías.",
+                    "Implementé arquitectura offline-first con sincronización automática, lo que eliminó el uso de papel y la logística de traslado físico, optimizando la eficiencia operativa en un 80%. ",
+                    "El sistema centraliza la información en tiempo real y permite la exportación de reportes precisos para investigadores y productores"
+                ]
             },
             {
                 company_name: "INTA - Argentina",
-                job_title: "Desarrollador Full Stack",
-                duration: "2021 - Presente",
-                from: {
-                    timestamp: new Date('2021-01-01').getTime()
-                },
-                to: {
-                    timestamp: new Date().getTime()
-                },
-                description: {
-                    nodes: [
-                        {
-                            type: 'paragraph',
-                            content: [
-                                {
-                                    type: 'text',
-                                    value: 'Developing web applications and leading projects.'
-                                }
-                            ]
-                        }
-                    ]
-                }
+                year: 2024,
+                achievements: [
+                    "Diseñé plataforma de gestión agropecuaria que automatizó comparación de presupuestos, eliminando 80% del trabajo manual en Excel y reduciendo errores de cálculo.",
+                    "Implementé arquitectura frontend con React que mejoró mantenibilidad del código y redujo tiempo de onboarding de nuevos desarrolladores en 40%."
+                ]
             }
         ]
     },
@@ -152,69 +111,88 @@ export const portfolioData = {
         items: [
             {
                 slug: 'project-1',
-                title: 'Próximamente',
+                title: 'AgroGestor - Gestión Agropecuaria',
+                subtitle: 'React + Tailwind',
                 theme: '#6366F1',
                 cover_image: {
-                    alt: 'Próximamente',
-                    src: '',
+                    alt: 'proyectTwo',
+                    src: '/proyectTwo.png',
                     width: 800,
                     height: 600
                 },
+                desktop_gallery: [
+                    { alt: 'Vista principal', src: '/proyectTwo.png' },
+                    { alt: 'Vista 2', src: '/proyectTwo-part-2.png' },
+                    { alt: 'Vista 3', src: '/proyectTwo-part-3.png' }
+                ],
                 gallery: [
                     {
-                        alt: 'Próximamente',
-                        src: '',
+                        alt: 'proyectTwo',
+                        src: '/proyectTwo-App.png',
                         width: 800,
                         height: 600
                     }
                 ],
-                description: {
-                    nodes: [
-                        {
-                            type: 'paragraph',
-                            content: [
-                                {
-                                    type: 'text',
-                                    value: 'A description of the first project.'
-                                }
-                            ]
-                        }
-                    ]
+                description: 'Plataforma web para gestión integral de proyectos agropecuarios. Permite crear, editar y comparar presupuestos dinámicamente, optimizando la toma de decisiones financieras.',
+                features: [
+                    'Comparación dinámica de presupuestos',
+                    'Dashboard con métricas en tiempo real',
+                    'Exportación de reportes PDF'
+                ],
+                metrics: [
+                    { value: '80%', label: 'Reducción trabajo manual' },
+                    { value: '40%', label: 'Menos errores de cálculo' }
+                ],
+                tech_stack: {
+                    frontend: ['React', 'TypeScript', 'Tailwind CSS'],
+                    backend: [],
+                    mobile: []
                 },
-                categories: ['Web Development', 'Design']
+                categories: ['React', 'Tailwind CSS' , "JavaScript"],
             },
             {
                 slug: 'project-2',
                 title: 'Conicet - Sistema Monitoreo',
+                subtitle: 'Full Stack • Web & Mobile',
                 theme: '#10B981',
                 cover_image: {
-                    alt: 'Project 2',
+                    alt: 'Dashboard del sistema de monitoreo',
                     src: '/proyectOne.png',
                     width: 800,
                     height: 600
                 },
+                desktop_gallery: [
+                    { alt: 'Dashboard principal', src: '/proyectOne.png' },
+                    { alt: 'Vista 2', src: '' },
+                    { alt: 'Vista 3', src: '' }
+                ],
                 gallery: [
                     {
-                        alt: 'Project 2',
-                        src: '/proyectOne.png',
+                        alt: 'App móvil - Vista principal',
+                        src: '/proyectUno-App-part-1.png',
                         width: 800,
                         height: 600
                     }
                 ],
-                description: {
-                    nodes: [
-                        {
-                            type: 'paragraph',
-                            content: [
-                                {
-                                    type: 'text',
-                                    value: 'Plataforma de visualización con mapas interactivos, filtros por período y capas satelitales. Permite análisis histórico de precipitaciones y exportación de reportes para investigación científica. Stack: React, Leaflet, Laravel, MySQL , PHP.' 
-                                }
-                            ]
-                        }
-                    ]
+                description: 'Solución Full Stack (Móvil/Web) para digitalizar el monitoreo climático en zonas rurales. Arquitectura offline-first con sincronización automática, eliminando el uso de papel y centralizando información en tiempo real.',
+                features: [
+                    'Arquitectura offline-first con sync automático',
+                    'Dashboard con mapas interactivos (Leaflet)',
+                    'API REST robusta con Laravel',
+                    'App móvil multiplataforma'
+                ],
+                metrics: [
+                    { value: '40%', label: 'Reducción pérdidas de ganado' },
+                    { value: '80%', label: 'Eficiencia operativa' },
+                    { value: '0', label: 'Uso de papel' },
+                    { value: '24/7', label: 'Monitoreo en tiempo real' }
+                ],
+                tech_stack: {
+                    frontend: ['React', 'TypeScript', 'Tailwind CSS', 'Leaflet'],
+                    backend: ['Laravel', 'PHP', 'MySQL'],
+                    mobile: ['React Native', 'SQLite', 'Offline Sync']
                 },
-                categories: ['html', 'css', 'javascript', 'react', 'laravel', 'mysql', 'typescript', 'tailwindcss'],
+                categories: ['React', 'Laravel', 'MySQL', 'TypeScript', 'Tailwind CSS'],
                 cta: 'Ver caso',
                 github_links: {
                     frontend: 'https://github.com/diegorios-dev/PlataformaWeb-Conicet',

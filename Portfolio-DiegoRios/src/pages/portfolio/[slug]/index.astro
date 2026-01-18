@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { portfolioData } from '../../../data/portfolio-data';
+import PhoneMockup from '../../../components/portfolio-page/PhoneMockup.astro';
+import BrowserMockup from '../../../components/portfolio-page/BrowserMockup.astro';
 
 export function getStaticPaths() {
     return portfolioData.portfolio.items.map((item) => ({
@@ -14,133 +16,301 @@ const { item } = Astro.props as { item: PortfolioItem };
 ---
 
 <Layout title={`${item.title} | Diego Rios`}>
-    <main class="py-24 lg:py-28 px-6 lg:px-20 bg-surface dark:bg-surface-dark overflow-hidden min-h-screen text-content dark:text-content-dark transition-colors duration-300">
-        <div class="max-w-screen-xl mx-auto">
-            <!-- Header -->
-            <header class="mb-10 flex items-center justify-between">
-                <div>
-                    <h1 class="text-2xl lg:text-4xl font-bold uppercase tracking-tight">
-                        {item.title}
-                    </h1>
-                    {item.categories && item.categories.length > 0 && (
-                        <p class="text-sm text-content-muted dark:text-content-dark-muted mt-2">
-                            {item.categories.join(' / ')}
-                        </p>
-                    )}
-                </div>
+    <main class="min-h-screen bg-background dark:bg-background-dark text-content dark:text-content-dark transition-colors duration-300">
+        
+        <!-- Hero Header -->
+        <header class="relative lg:pt-12 pt-12 pb-12 lg:pt-32 lg:pb-16 overflow-hidden">
+            <div 
+                class="absolute inset-0 opacity-20 dark:opacity-30"
+                style={`background: radial-gradient(ellipse at top, ${item.theme}40 0%, transparent 50%)`}
+            />
+            
+            <div class="container relative z-10">
                 <a 
                     href="/portfolio" 
-                    class="font-semibold text-sm hover:text-content-muted dark:hover:text-content-dark-muted transition-colors flex items-center gap-2"
+                    class="inline-flex items-center gap-2 text-sm text-content-muted dark:text-content-dark-muted hover:text-content dark:hover:text-content-dark transition-colors mb-8 group"
                 >
-                    <span>←</span>
-                    <span>ATRÁS</span>
+                    <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    <span>Volver a proyectos</span>
                 </a>
-            </header>
 
-            <!-- Cover Image -->
-            {item.cover_image && item.cover_image.src && (
-                <section class="mb-10">
-                    <div class="w-full aspect-[16/10] overflow-hidden rounded-lg bg-surface-alt dark:bg-surface-dark-alt">
-                        <img
-                            src={item.cover_image.src}
-                            alt={item.cover_image.alt}
-                            width={item.cover_image.width}
-                            height={item.cover_image.height}
-                            class="w-full h-full object-cover"
-                        />
+                <div class="max-w-4xl">
+                    <div class="flex flex-wrap items-center gap-3 mb-4">
+                        {item.subtitle && (
+                            <span class="text-sm text-content-muted dark:text-content-dark-muted">
+                                {item.subtitle}
+                            </span>
+                        )}
                     </div>
-                </section>
-            )}
+                    
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+                        {item.title}
+                    </h1>
 
-            <!-- Placeholder if no images -->
-            {(!item.cover_image?.src) && (
-                <section class="mb-10">
-                    <div 
-                        class="w-full aspect-[16/10] overflow-hidden rounded-lg flex items-center justify-center"
-                        style={`background-color: ${item.theme || '#6366F1'}`}
-                    >
-                        <span class="text-white text-2xl font-bold">{item.title}</span>
+                    {item.categories && item.categories.length > 0 && (
+                        <div class="flex flex-wrap gap-2">
+                            {item.categories.map((cat) => (
+                                <span class="px-3 py-1.5 text-xs font-medium bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-full text-content-muted dark:text-content-dark-muted">
+                                    {cat}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        </header>
+
+        <div class="container pb-20">
+            
+            <!-- Galería -->
+            <section class="mb-16 lg:mb-24">
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
+                    <!-- Desktop Screenshots -->
+                    <div class="lg:col-span-8 space-y-4">
+                        {item.desktop_gallery?.slice(0, 3).map((img) => (
+                            <BrowserMockup 
+                                src={img.src} 
+                                alt={img.alt} 
+                                theme={item.theme} 
+                                title={item.title} 
+                            />
+                        ))}
                     </div>
-                </section>
-            )}
+                    
 
-            <!-- Description -->
-            <section class="max-w-3xl">
-                <h2 class="text-lg font-semibold uppercase tracking-wide mb-4 text-content dark:text-content-dark">
-                    Descripción
-                </h2>
-                {item.description?.nodes?.map((node) => {
-                    if (node.type === 'paragraph') {
-                        return (
-                            <p class="text-content-muted dark:text-content-dark-muted leading-relaxed text-lg mb-4">
-                                {node.content?.map((content) => content.value).join('')}
-                            </p>
-                        );
-                    }
-                    return null;
-                })}
+                    <!-- Mobile Screenshots -->
+                    <div class="lg:col-span-4 grid grid-cols-2 lg:grid-cols-2 gap-4">
+                        {item.gallery?.slice(0, 4).map((img) => (
+                            <PhoneMockup src={img.src} alt={img.alt} theme={item.theme} />
+                        ))}
+                    </div>
+                </div>
+
+                
             </section>
 
-            <!-- GitHub Links -->
+            <!-- Métricas -->
+            {item.metrics && item.metrics.length > 0 && (
+                <section class="mb-16 lg:mb-24">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-1.5 h-1.5 rounded-full" style={`background: ${item.theme}`}></div>
+                        <h2 class="text-sm font-semibold uppercase tracking-wider text-content-muted dark:text-content-dark-muted">
+                            Impacto Medible
+                        </h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                        {item.metrics.map((metric) => (
+                            <div class="relative group p-6 rounded-2xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark hover:border-opacity-50 transition-all duration-300">
+                                <p class="text-3xl lg:text-4xl font-bold mb-2" style={`color: ${item.theme}`}>
+                                    {metric.value}
+                                </p>
+                                <p class="text-sm text-content-muted dark:text-content-dark-muted leading-tight">
+                                    {metric.label}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )}
+
+            <!-- Descripción y Stack -->
+            <section class="mb-16 lg:mb-24">
+                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
+                    <div class="lg:col-span-7">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-1.5 h-1.5 rounded-full" style={`background: ${item.theme}`}></div>
+                            <h2 class="text-sm font-semibold uppercase tracking-wider text-content-muted dark:text-content-dark-muted">
+                                El Proyecto
+                            </h2>
+                        </div>
+                        
+                        <p class="text-content-muted dark:text-content-dark-muted leading-relaxed text-base lg:text-lg mb-8">
+                            {item.description}
+                        </p>
+
+                        {item.features && item.features.length > 0 && (
+                            <div class="space-y-3">
+                                {item.features.map((feature) => (
+                                    <div class="flex items-start gap-3">
+                                        <svg class="w-5 h-5 mt-0.5 flex-shrink-0" style={`color: ${item.theme}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                        <span class="text-content-muted dark:text-content-dark-muted">{feature}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <!-- Tech Stack -->
+                    {item.tech_stack && (
+                        <div class="lg:col-span-5">
+                            <div class="sticky top-24 p-6 rounded-2xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark">
+                                <h3 class="text-sm font-semibold uppercase tracking-wider text-content-muted dark:text-content-dark-muted mb-4">
+                                    Stack Tecnológico
+                                </h3>
+                                
+                                <div class="space-y-4">
+                                    {item.tech_stack.frontend && item.tech_stack.frontend.length > 0 && (
+                                        <div>
+                                            <p class="text-xs text-content-muted dark:text-content-dark-muted mb-2">Frontend</p>
+                                            <div class="flex flex-wrap gap-2">
+                                                {item.tech_stack.frontend.map((tech) => (
+                                                    <span class="px-3 py-1.5 text-sm bg-background dark:bg-background-dark rounded-lg">
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                    
+                                    {item.tech_stack.backend && item.tech_stack.backend.length > 0 && (
+                                        <div>
+                                            <p class="text-xs text-content-muted dark:text-content-dark-muted mb-2">Backend</p>
+                                            <div class="flex flex-wrap gap-2">
+                                                {item.tech_stack.backend.map((tech) => (
+                                                    <span class="px-3 py-1.5 text-sm bg-background dark:bg-background-dark rounded-lg">
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                    
+                                    {item.tech_stack.mobile && item.tech_stack.mobile.length > 0 && (
+                                        <div>
+                                            <p class="text-xs text-content-muted dark:text-content-dark-muted mb-2">Mobile</p>
+                                            <div class="flex flex-wrap gap-2">
+                                                {item.tech_stack.mobile.map((tech) => (
+                                                    <span class="px-3 py-1.5 text-sm bg-background dark:bg-background-dark rounded-lg">
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            <!-- Repositorios -->
             {item.github_links && (
-                <section class="mt-10">
-                    <h2 class="text-lg font-semibold uppercase tracking-wide mb-4 text-content dark:text-content-dark">
-                        Ver código en GitHub
-                    </h2>
-                    <div class="flex flex-wrap gap-4">
+                <section class="mb-16 lg:mb-24">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-1.5 h-1.5 rounded-full" style={`background: ${item.theme}`}></div>
+                        <h2 class="text-sm font-semibold uppercase tracking-wider text-content-muted dark:text-content-dark-muted">
+                            Código
+                        </h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {item.github_links.frontend && (
                             <a 
                                 href={item.github_links.frontend}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#24292e] text-white font-medium rounded-lg hover:bg-[#3a3f44] transition-colors"
+                                class="group p-6 rounded-2xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark hover:border-gray-600 transition-all duration-300"
                             >
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                <span>Frontend</span>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                        </svg>
+                                    </div>
+                                    <p class="font-semibold">Frontend</p>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm text-content-muted dark:text-content-dark-muted group-hover:text-content dark:group-hover:text-content-dark transition-colors">
+                                    <span>Ver repositorio</span>
+                                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </div>
                             </a>
                         )}
+                        
                         {item.github_links.backend && (
                             <a 
                                 href={item.github_links.backend}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#24292e] text-white font-medium rounded-lg hover:bg-[#3a3f44] transition-colors"
+                                class="group p-6 rounded-2xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark hover:border-gray-600 transition-all duration-300"
                             >
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                <span>Backend</span>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                        </svg>
+                                    </div>
+                                    <p class="font-semibold">Backend</p>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm text-content-muted dark:text-content-dark-muted group-hover:text-content dark:group-hover:text-content-dark transition-colors">
+                                    <span>Ver repositorio</span>
+                                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </div>
                             </a>
                         )}
+                        
                         {item.github_links.mobile && (
                             <a 
                                 href={item.github_links.mobile}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#24292e] text-white font-medium rounded-lg hover:bg-[#3a3f44] transition-colors"
+                                class="group p-6 rounded-2xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark hover:border-gray-600 transition-all duration-300"
                             >
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                <span>Mobile</span>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-purple-500" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                        </svg>
+                                    </div>
+                                    <p class="font-semibold">Mobile</p>
+                                </div>
+                                <div class="flex items-center gap-2 text-sm text-content-muted dark:text-content-dark-muted group-hover:text-content dark:group-hover:text-content-dark transition-colors">
+                                    <span>Ver repositorio</span>
+                                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </div>
                             </a>
                         )}
                     </div>
                 </section>
             )}
 
-            <!-- Back Button -->
-            <div class="mt-12">
-                <a 
-                    href="/portfolio"
-                    class="inline-flex items-center gap-2 px-6 py-3 bg-content dark:bg-content-dark text-surface dark:text-surface-dark font-semibold rounded-full hover:opacity-90 transition-opacity"
-                >
-                    <span>←</span>
-                    <span>Ver todos los proyectos</span>
-                </a>
-            </div>
+            <!-- CTA -->
+            <section class="text-center py-12 lg:py-16 rounded-3xl bg-surface dark:bg-surface-dark border border-border dark:border-border-dark">
+                <h3 class="text-2xl lg:text-3xl font-bold mb-4">
+                    ¿Interesado en mi trabajo?
+                </h3>
+                <p class="text-content-muted dark:text-content-dark-muted mb-8 max-w-md mx-auto">
+                    Estoy disponible para nuevos proyectos.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a 
+                        href="/contact"
+                        class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105"
+                        style={`background: ${item.theme}`}
+                    >
+                        Contactame
+                    </a>
+                    <a 
+                        href="/portfolio"
+                        class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold border border-border dark:border-border-dark hover:bg-surface dark:hover:bg-surface-dark transition-all duration-300"
+                    >
+                        Ver más proyectos
+                    </a>
+                </div>
+            </section>
+
         </div>
     </main>
 </Layout>

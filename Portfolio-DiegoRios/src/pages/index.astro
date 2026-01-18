@@ -8,7 +8,7 @@ import { portfolioData } from '../data/portfolio-data';
 const homePageMeta = portfolioData.home;
 const aboutPageMeta = portfolioData.about;
 const portfolioPageMeta = portfolioData.portfolio;
-const portfolioEntries = portfolioData.portfolio.items;
+const PortfolioItem = portfolioData.portfolio.items;
 ---
 
 <Layout
@@ -34,7 +34,7 @@ const portfolioEntries = portfolioData.portfolio.items;
         <HomePortfolio
             title={portfolioPageMeta.title}
             description={portfolioPageMeta.description}
-            items={portfolioEntries}
+            items={PortfolioItem}
             client:load
         />
     </div>

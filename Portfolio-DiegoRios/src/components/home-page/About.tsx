@@ -14,15 +14,7 @@ interface RichTextData {
 
 interface WorkHistoryItem {
     company_name: string;
-    job_title: string;
-    duration: string;
-    from?: {
-        timestamp: number;
-    };
-    to?: {
-        timestamp: number;
-    };
-    description: RichTextData;
+    year: number;
 }
 
 interface Props {
@@ -225,10 +217,8 @@ const HomeAbout: React.FC<Props> = ({
                                         <span>{item.company_name}</span>
                                         <span className="w-[3px] h-[3px] rounded-full bg-content-muted dark:bg-content-dark-muted mx-1.5 lg:mx-2 transition-colors duration-300" />
                                         <span>
-                                            {item.from?.timestamp
-                                                ? new Date(
-                                                      item.from.timestamp,
-                                                  ).getFullYear()
+                                            {item.year
+                                                ? item.year
                                                 : 'Present'}
                                         </span>
                                     </div>

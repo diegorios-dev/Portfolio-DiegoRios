@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
     ];
 
     return (
-        <footer ref={footerRef} className="pb-10 overflow-hidden">
+        <footer ref={footerRef} className="pt-16 md:pt-20 lg:pt-24 pb-10 overflow-hidden">
             <div className="container">
                 <div className="pb-6 border-b border-border dark:border-border-dark mb-6 md:flex md:items-end md:justify-between md:pb-8 md:mb-8 transition-colors duration-300">
                     <div 

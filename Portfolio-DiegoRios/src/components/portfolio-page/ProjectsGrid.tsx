@@ -21,10 +21,26 @@ interface RichTextData {
 interface PortfolioItem {
     slug: string;
     title: string;
+    subtitle?: string;
     theme: string;
     cover_image: MediaData;
     categories: string[];
-    description: RichTextData;
+    description: string;
+    desktop_gallery?: { alt: string; src: string }[];
+    gallery?: MediaData[];
+    features?: string[];
+    metrics?: { value: string; label: string }[];
+    tech_stack?: {
+        frontend: string[];
+        backend: string[];
+        mobile: string[];
+    };
+    cta?: string;
+    github_links?: {
+        frontend?: string;
+        backend?: string;
+        mobile?: string;
+    };
 }
 
 interface Props {
@@ -142,7 +158,7 @@ const ProjectsGrid: React.FC<Props> = ({ items }) => {
                                 </h3>
                                 
                                 <p className="text-sm md:text-base text-content-muted dark:text-content-dark-muted mb-4 line-clamp-2 transition-colors duration-300">
-                                    {project.description.nodes[0]?.content[0]?.value}
+                                    {project.description}
                                 </p>
                                 
                                 <div className="flex flex-wrap gap-2">

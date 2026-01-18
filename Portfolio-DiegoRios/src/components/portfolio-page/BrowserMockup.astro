@@ -1,0 +1,37 @@
+---
+interface Props {
+    src?: string;
+    alt?: string;
+    theme: string;
+    title?: string;
+}
+
+const { src, alt, theme, title } = Astro.props;
+---
+
+<div class="relative group rounded-2xl overflow-hidden bg-surface dark:bg-surface-dark border border-border dark:border-border-dark p-4 lg:p-6">
+    <div class="mb-3 flex items-center gap-2">
+        <div class="flex gap-1.5">
+            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+        </div>
+    </div>
+    
+    <div class="rounded-lg overflow-hidden bg-background dark:bg-background-dark aspect-[16/10]">
+        {src ? (
+            <img
+                src={src}
+                alt={alt || 'Screenshot'}
+                class="w-full h-full object-fill transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+        ) : (
+            <div 
+                class="w-full h-full flex items-center justify-center"
+                style={`background: linear-gradient(135deg, ${theme}40, ${theme}10)`}
+            >
+                <span class="text-2xl font-bold opacity-50">{title}</span>
+            </div>
+        )}
+    </div>
+</div>

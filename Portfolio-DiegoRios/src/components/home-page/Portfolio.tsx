@@ -28,11 +28,26 @@ interface MediaData {
 interface PortfolioItem {
     slug: string;
     title: string;
+    subtitle?: string;
     cover_image: MediaData;
-    description: RichTextData;
+    description: string;
     categories: string[];
     theme?: string;
+    desktop_gallery?: { alt: string; src: string }[];
     gallery?: MediaData[];
+    features?: string[];
+    metrics?: { value: string; label: string }[];
+    tech_stack?: {
+        frontend: string[];
+        backend: string[];
+        mobile: string[];
+    };
+    cta?: string;
+    github_links?: {
+        frontend?: string;
+        backend?: string;
+        mobile?: string;
+    };
 }
 
 interface Props {
@@ -150,8 +165,8 @@ const HomePortfolio: React.FC<Props> = ({
                                     }}
                                     className="w-full rounded-3xl overflow-hidden"
                                 >
-                                    {item.gallery &&
-                                        item.gallery.map(
+                                    {item.desktop_gallery &&
+                                        item.desktop_gallery.map(
                                             (galleryItem, galleryIndex) => (
                                                 <SwiperSlide
                                                     key={galleryIndex}
@@ -160,8 +175,6 @@ const HomePortfolio: React.FC<Props> = ({
                                                     <img
                                                         src={galleryItem.src}
                                                         alt={galleryItem.alt}
-                                                        width={galleryItem.width}
-                                                        height={galleryItem.height}
                                                         loading="lazy"
                                                         className={classNames(
                                                             'size-full aspect-[1.45] object-cover rounded-3xl overflow-hidden',
@@ -188,7 +201,7 @@ const HomePortfolio: React.FC<Props> = ({
                                     </div>
                                 </div>
                             </a>
-                            {item.gallery && item.gallery.length > 0 && (
+                            {item.desktop_gallery && item.desktop_gallery.length > 0 && (
                                 <div
                                     className={`homePortfolio--galleryPagination homePortfolio--galleryPagination_${index} mt-6 lg:mt-8`}
                                 />

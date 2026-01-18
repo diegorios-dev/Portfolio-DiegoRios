@@ -152,7 +152,7 @@ const HomeHero: React.FC<Props> = ({title, description, image, valueProps}) => {
                         <div className="relative z-10 h-full flex flex-col items-start">
                             <h1 
                                 ref={titleRef}
-                                className="text-xl leading-[1.2] tracking-[-0.41px] mb-3 lg:text-[32px] lg:leading-[1.2] lg:mb-4 text-content dark:text-content-dark transition-colors duration-300"
+                                className="text-xl leading-[1.2] tracking-[-0.41px] mb-3 lg:text-[32px] lg:leading-[1.2] lg:mb-4 text-content dark:text-content-dark transition-colors duration-300 whitespace-pre-line"
                             >
                                 {title}
                             </h1>
