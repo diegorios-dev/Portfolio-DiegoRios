@@ -314,7 +314,7 @@ const Form: React.FC = () => {
                         ref={buttonRef}
                         type="submit"
                         disabled={submitStatus === 'loading'}
-                        className="group w-full md:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-white bg-accent-blue dark:bg-accent-blue-dark hover:bg-accent-blue/90 dark:hover:bg-accent-blue-dark/90 focus:outline-none focus:ring-4 focus:ring-accent-blue/30 dark:focus:ring-accent-blue-dark/30 disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shadow-lg shadow-accent-blue/25 dark:shadow-accent-blue-dark/25 hover:shadow-xl hover:shadow-accent-blue/30 dark:hover:shadow-accent-blue-dark/30"
+                        className="group w-full flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-white bg-accent-blue dark:bg-accent-blue-dark hover:bg-accent-blue/90 dark:hover:bg-accent-blue-dark/90 focus:outline-none focus:ring-4 focus:ring-accent-blue/30 dark:focus:ring-accent-blue-dark/30 disabled:opacity-60 disabled:cursor-not-allowed transform hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shadow-lg shadow-accent-blue/25 dark:shadow-accent-blue-dark/25 hover:shadow-xl hover:shadow-accent-blue/30 dark:hover:shadow-accent-blue-dark/30"
                     >
                         {submitStatus === 'loading' ? (
                             <>
