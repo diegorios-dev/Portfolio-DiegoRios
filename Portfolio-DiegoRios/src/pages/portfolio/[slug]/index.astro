@@ -19,7 +19,7 @@ const { item } = Astro.props as { item: PortfolioItem };
     <main class="min-h-screen bg-background dark:bg-background-dark text-content dark:text-content-dark transition-colors duration-300">
         
         <!-- Hero Header -->
-        <header class="relative lg:pt-12 pt-12 pb-12 lg:pt-32 lg:pb-16 overflow-hidden">
+        <header class="relative pt-10 pb-6 lg:pt-6 lg:pb-10 overflow-hidden">
             <div 
                 class="absolute inset-0 opacity-20 dark:opacity-30"
                 style={`background: radial-gradient(ellipse at top, ${item.theme}40 0%, transparent 50%)`}
@@ -50,13 +50,28 @@ const { item } = Astro.props as { item: PortfolioItem };
                     </h1>
 
                     {item.categories && item.categories.length > 0 && (
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex flex-wrap gap-2 mb-6">
                             {item.categories.map((cat) => (
                                 <span class="px-3 py-1.5 text-xs font-medium bg-surface dark:bg-surface-dark border border-border dark:border-border-dark rounded-full text-content-muted dark:text-content-dark-muted">
                                     {cat}
                                 </span>
                             ))}
                         </div>
+                    )}
+
+                    {item.live_url && (
+                        <a 
+                            href={item.live_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                            style={`background: ${item.theme}`}
+                        >
+                            <span>Ver proyecto en vivo</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </a>
                     )}
                 </div>
             </div>
@@ -82,9 +97,11 @@ const { item } = Astro.props as { item: PortfolioItem };
                     
 
                     <!-- Mobile Screenshots -->
-                    <div class="lg:col-span-4 grid grid-cols-2 lg:grid-cols-2 gap-4">
-                        {item.gallery?.slice(0, 4).map((img) => (
-                            <PhoneMockup src={img.src} alt={img.alt} theme={item.theme} />
+                    <div class="lg:col-span-4 flex items-start justify-center">
+                        {item.gallery?.slice(0, 1).map((img) => (
+                            <div class="w-full max-w-[480px]">
+                                <PhoneMockup src={img.src} alt={img.alt} theme={item.theme} />
+                            </div>
                         ))}
                     </div>
                 </div>

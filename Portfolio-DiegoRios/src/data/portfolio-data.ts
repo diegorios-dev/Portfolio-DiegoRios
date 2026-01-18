@@ -111,7 +111,7 @@ export const portfolioData = {
         items: [
             {
                 slug: 'project-1',
-                title: 'AgroGestor - Gestión Agropecuaria',
+                title: 'Inta - Calculadora de Presupuesto Agropecuaria',
                 subtitle: 'React + Tailwind',
                 theme: '#6366F1',
                 cover_image: {
@@ -149,6 +149,7 @@ export const portfolioData = {
                     mobile: []
                 },
                 categories: ['React', 'Tailwind CSS' , "JavaScript"],
+                live_url: 'https://inta-calculadora.vercel.app/',
             },
             {
                 slug: 'project-2',
@@ -163,8 +164,8 @@ export const portfolioData = {
                 },
                 desktop_gallery: [
                     { alt: 'Dashboard principal', src: '/proyectOne.png' },
-                    { alt: 'Vista 2', src: '' },
-                    { alt: 'Vista 3', src: '' }
+                    { alt: 'Vista 2', src: '/proyectOne-part-2.png' },
+                    { alt: 'Vista 3', src: '/proyectOne-part-3.png' }
                 ],
                 gallery: [
                     {
@@ -194,6 +195,7 @@ export const portfolioData = {
                 },
                 categories: ['React', 'Laravel', 'MySQL', 'TypeScript', 'Tailwind CSS'],
                 cta: 'Ver caso',
+                live_url: '',
                 github_links: {
                     frontend: 'https://github.com/diegorios-dev/PlataformaWeb-Conicet',
                     backend: 'https://github.com/diegorios-dev/Backend-Pluvia-Conicet',

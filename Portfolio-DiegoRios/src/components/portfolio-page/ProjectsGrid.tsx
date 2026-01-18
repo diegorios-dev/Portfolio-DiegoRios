@@ -129,16 +129,16 @@ const ProjectsGrid: React.FC<Props> = ({ items }) => {
                             key={index}
                             ref={(el) => { cardsRef.current[index] = el; }}
                             href={`/portfolio/${project.slug}`}
-                            className="group relative rounded-3xl overflow-hidden bg-surface-subtle dark:bg-surface-dark-subtle transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
+                            className="group relative rounded-2xl lg:rounded-3xl overflow-hidden bg-surface-subtle dark:bg-surface-dark-subtle transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
                         >
-                            <div className="relative h-[500px] overflow-hidden">
+                            <div className="relative h-[280px] md:h-[400px] lg:h-[500px] overflow-hidden">
                                 <img
                                     src={project.cover_image.src}
                                     alt={project.cover_image.alt}
                                     width={project.cover_image.width}
                                     height={project.cover_image.height}
                                     loading="lazy"
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    className="w-full h-full object-cover object-top"
                                     style={{ imageRendering: 'auto' }}
                                 />
                                 {/* Overlay con gradiente */}
@@ -152,24 +152,29 @@ const ProjectsGrid: React.FC<Props> = ({ items }) => {
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
                             </div>
                             
-                            <div className="p-6 lg:p-8">
-                                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-content dark:text-content-dark mb-3 transition-all duration-300 group-hover:translate-x-2">
+                            <div className="p-4 md:p-6 lg:p-8">
+                                <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-content dark:text-content-dark mb-2 md:mb-3 transition-all duration-300 group-hover:translate-x-2">
                                     {project.title}
                                 </h3>
                                 
-                                <p className="text-sm md:text-base text-content-muted dark:text-content-dark-muted mb-4 line-clamp-2 transition-colors duration-300">
+                                <p className="text-sm md:text-base text-content-muted dark:text-content-dark-muted mb-3 md:mb-4 line-clamp-2 transition-colors duration-300">
                                     {project.description}
                                 </p>
                                 
-                                <div className="flex flex-wrap gap-2">
-                                    {project.categories.map((category, idx) => (
+                                <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                    {project.categories.slice(0, 3).map((category, idx) => (
                                         <span
                                             key={idx}
-                                            className="category-tag px-3 py-1 text-xs md:text-sm rounded-full bg-surface-muted dark:bg-surface-dark-muted text-content-muted dark:text-content-dark font-medium transition-all duration-300 hover:scale-105"
+                                            className="category-tag px-2.5 py-1 text-xs rounded-full bg-surface-muted dark:bg-surface-dark-muted text-content-muted dark:text-content-dark font-medium transition-all duration-300 hover:scale-105"
                                         >
                                             {category}
                                         </span>
                                     ))}
+                                    {project.categories.length > 3 && (
+                                        <span className="px-2.5 py-1 text-xs rounded-full bg-surface-muted dark:bg-surface-dark-muted text-content-muted dark:text-content-dark font-medium">
+                                            +{project.categories.length - 3}
+                                        </span>
+                                    )}
                                 </div>
                             </div>
                             
@@ -180,8 +185,8 @@ const ProjectsGrid: React.FC<Props> = ({ items }) => {
                             />
                             
                             {/* Arrow indicator */}
-                            <div className="absolute bottom-6 right-6 lg:bottom-8 lg:right-8 w-12 h-12 rounded-full flex items-center justify-center bg-content dark:bg-content-dark text-content-inverted dark:text-content-dark-inverted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-content dark:bg-content-dark text-content-inverted dark:text-content-dark-inverted transition-all duration-300">
+                                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </div>

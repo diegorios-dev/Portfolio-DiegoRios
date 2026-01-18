@@ -81,7 +81,7 @@ const PortfolioHero: React.FC<Props> = ({ title, subtitle, backgroundImage }) =>
     }, []);
 
     return (
-        <section ref={sectionRef} className="relative pt-8 pb-10 overflow-hidden md:pb-20 lg:pt-[72px] lg:pb-[120px]">
+        <section ref={sectionRef} className="relative pt-8 pb-6 overflow-hidden lg:pt-[72px]">
             <div className="container">
                 <div className="relative rounded-3xl overflow-hidden">
                     {/* Imagen de fondo */}

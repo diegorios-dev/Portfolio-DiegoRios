@@ -238,7 +238,7 @@ const HomeAbout: React.FC<Props> = ({
                         <div ref={ctaRef} className="mt-6 lg:mt-8">
                             <a
                                 href="/about"
-                                className="group inline-flex items-center gap-2 px-6 py-3 text-sm md:text-base leading-none tracking-[-0.41px] font-medium text-content dark:text-content-dark border-2 border-content dark:border-content-dark rounded-full transition-all duration-300 hover:bg-content dark:hover:bg-content-dark hover:text-content-inverted dark:hover:text-content-dark-inverted hover:scale-105 hover:shadow-xl"
+                                className="group flex justify-center items-center gap-2 px-6 py-3 text-sm md:text-base leading-none tracking-[-0.41px] font-medium text-content dark:text-content-dark border-2 border-content dark:border-content-dark rounded-full transition-all duration-300 hover:bg-content dark:hover:bg-content-dark hover:text-content-inverted dark:hover:text-content-dark-inverted hover:scale-105 hover:shadow-xl"
                             >
                                 Ver Mas
                                 <svg 
