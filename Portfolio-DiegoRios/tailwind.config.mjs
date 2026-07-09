@@ -72,6 +72,7 @@ export default {
             fontFamily: {
                 helvetica: ['Helvetica', 'sans-serif'],
                 inter: ['Inter', 'sans-serif'],
+                display: ['Playfair Display', 'serif'],
             },
             animation: {
                 fadeIn: 'fadeIn 0.3s ease-out',

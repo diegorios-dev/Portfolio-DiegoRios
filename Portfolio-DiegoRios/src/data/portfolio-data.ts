@@ -52,7 +52,55 @@ export const portfolioData = {
                     content: [
                         {
                             type: 'text',
-                            value: 'Soy desarrollador web con 2 años de experiencia construyendo productos digitales para organismos públicos de investigación. Me especializo en crear interfaces intuitivas y sistemas backend eficientes. Disfruto aprender tecnologías nuevas, colaborar con equipos multidisciplinarios y entregar soluciones que generen impacto real.'
+                            value: 'Soy desarrollador web con '
+                        },
+                        {
+                            type: 'strong',
+                            value: '2 años de experiencia'
+                        },
+                        {
+                            type: 'text',
+                            value: ' construyendo productos digitales para '
+                        },
+                        {
+                            type: 'strong',
+                            value: 'organismos públicos de investigación'
+                        },
+                        {
+                            type: 'text',
+                            value: '. Me especializo en crear '
+                        },
+                        {
+                            type: 'strong',
+                            value: 'interfaces intuitivas'
+                        },
+                        {
+                            type: 'text',
+                            value: ' y '
+                        },
+                        {
+                            type: 'strong',
+                            value: 'sistemas backend eficientes'
+                        },
+                        {
+                            type: 'text',
+                            value: '. Disfruto aprender tecnologías nuevas, '
+                        },
+                        {
+                            type: 'strong',
+                            value: 'colaborar con equipos multidisciplinarios'
+                        },
+                        {
+                            type: 'text',
+                            value: ' y '
+                        },
+                        {
+                            type: 'strong',
+                            value: 'entregar soluciones que generen impacto real'
+                        },
+                        {
+                            type: 'text',
+                            value: '.'
                         }
                     ]
                 }
@@ -66,7 +114,7 @@ export const portfolioData = {
         education_text: "Formación técnica con enfoque en Desarrollo Web full Stack y buenas prácticas de programación.",
         education_degrees: [
             {
-                degree: "Técnico en Desarrollo de Páginas Web",
+                degree: "Técnico Universitario en Desarrollo de Páginas Web",
                 university: "Universidad Nacional del Comahue",
                 year: "2025"
             }
@@ -112,7 +160,6 @@ export const portfolioData = {
             {
                 slug: 'project-1',
                 title: 'Inta - Calculadora de Presupuesto Agropecuaria',
-                subtitle: 'React + Tailwind',
                 theme: '#6366F1',
                 cover_image: {
                     alt: 'proyectTwo',
@@ -121,6 +168,7 @@ export const portfolioData = {
                     height: 600
                 },
                 desktop_gallery: [
+                    { alt: 'Vista principal', src: '/portada1.png' },
                     { alt: 'Vista principal', src: '/proyectTwo.png' },
                     { alt: 'Vista 2', src: '/proyectTwo-part-2.png' },
                     { alt: 'Vista 3', src: '/proyectTwo-part-3.png' }
@@ -154,7 +202,6 @@ export const portfolioData = {
             {
                 slug: 'project-2',
                 title: 'Conicet - Sistema Monitoreo',
-                subtitle: 'Full Stack • Web & Mobile',
                 theme: '#10B981',
                 cover_image: {
                     alt: 'Dashboard del sistema de monitoreo',
@@ -163,9 +210,10 @@ export const portfolioData = {
                     height: 600
                 },
                 desktop_gallery: [
+                    { alt: 'Dashboard principal', src: '/portada2.png' },
                     { alt: 'Dashboard principal', src: '/proyectOne.png' },
                     { alt: 'Vista 2', src: '/proyectOne-part-2.png' },
-                    { alt: 'Vista 3', src: '/proyectOne-part-3.png' }
+                    { alt: 'Vista 3', src: '/proyectOne.png' }
                 ],
                 gallery: [
                     {
@@ -175,9 +223,9 @@ export const portfolioData = {
                         height: 600
                     }
                 ],
-                description: 'Solución Full Stack (Móvil/Web) para digitalizar el monitoreo climático en zonas rurales. Arquitectura offline-first con sincronización automática, eliminando el uso de papel y centralizando información en tiempo real.',
+                description: 'Solución <strong>Full Stack</strong> (Móvil/Web) para digitalizar el monitoreo climático en zonas rurales. Arquitectura <strong>offline-first</strong> con <strong>sincronización automática</strong>, eliminando el uso de papel y centralizando información en <strong>tiempo real</strong>.',
                 features: [
-                    'Arquitectura offline-first con sync automático',
+                    'Arquitectura <strong>offline-first</strong> con sync automático',
                     'Dashboard con mapas interactivos (Leaflet)',
                     'API REST robusta con Laravel',
                     'App móvil multiplataforma'

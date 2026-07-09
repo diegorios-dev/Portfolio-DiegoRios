@@ -5,9 +5,14 @@ interface TextNode {
     value: string;
 }
 
+interface StrongNode {
+    type: 'strong';
+    value: string;
+}
+
 interface ContentNode {
     type: string;
-    content?: TextNode[];
+    content?: Array<TextNode | StrongNode>;
     children?: ContentNode[];
 }
 
@@ -23,7 +28,11 @@ const ContentManager: React.FC<Props> = ({ items, className = '' }) => {
             return (
                 <p key={index}>
                     {content.map((textNode, i) => (
-                        <span key={i}>{textNode.value}</span>
+                        textNode.type === 'strong' ? (
+                            <strong key={i}>{textNode.value}</strong>
+                        ) : (
+                            <span key={i}>{textNode.value}</span>
+                        )
                     ))}
                 </p>
             );

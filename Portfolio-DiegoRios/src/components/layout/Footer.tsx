@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
                 <div className="pb-6 border-b border-border dark:border-border-dark mb-6 md:flex md:items-end md:justify-between md:pb-8 md:mb-8 transition-colors duration-300">
                     <div 
                         ref={titleRef}
-                        className="text-lg leading-[1.2] tracking-[-0.41px] font-Helvetica max-w-[174px] max-md:mb-6 md:text-3xl md:leading-[1.2] md:max-w-[300px] lg:text-[40px] lg:max-w-[394px] text-content dark:text-content-dark transition-colors duration-300"
+                        className="text-lg leading-[1.2] tracking-[-0.41px] font-display max-w-[174px] max-md:mb-6 md:text-3xl md:leading-[1.2] md:max-w-[300px] lg:text-[40px] lg:max-w-[394px] text-content dark:text-content-dark transition-colors duration-300"
                     >
                         Contactame
                     </div>

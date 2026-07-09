@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import PinIcon from '../../assets/icons/pin.svg?raw';
 import MenuIcon from '../../assets/icons/menu.svg?raw';
@@ -9,12 +9,23 @@ const Header: React.FC = () => {
 
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     
-    const timeNow = new Date().toLocaleTimeString('es-AR', {
-        timeZone: 'America/Argentina/Buenos_Aires',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-    });
+    const [timeNow, setTimeNow] = useState<string>('');
+
+    useEffect(() => {
+        // Compute time on the client only to avoid hydration mismatch between server and client
+        const format = () => new Date().toLocaleTimeString('es-AR', {
+            timeZone: 'America/Argentina/Buenos_Aires',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+        });
+
+        setTimeNow(format());
+
+        // Optional: update every 60s so displayed time stays current
+        const timer = setInterval(() => setTimeNow(format()), 60_000);
+        return () => clearInterval(timer);
+    }, []);
 
     const toggleMobileMenu = () => {
         setShowMobileMenu(!showMobileMenu);
@@ -121,7 +132,7 @@ const Header: React.FC = () => {
                                     <span className="text-xs font-mono text-content-muted/50 dark:text-white/30 w-6">
                                         0{index + 1}
                                     </span>
-                                    <span className="text-2xl font-light tracking-tight text-content/70 dark:text-white/70 group-hover:text-content dark:group-hover:text-white transition-colors duration-200">
+                                    <span className="text-2xl font-light font-display tracking-tight text-content/70 dark:text-white/70 group-hover:text-content dark:group-hover:text-white transition-colors duration-200">
                                         {item.label}
                                     </span>
                                 </a>
@@ -200,7 +211,7 @@ const Header: React.FC = () => {
                             <li key={index}>
                                 <a
                                     href={item.href}
-                                    className="text-base leading-none font-medium tracking-[-0.41px] transition-colors duration-300 hover:text-content dark:hover:text-content-dark"
+                                    className="text-base leading-none font-medium font-display tracking-[-0.41px] transition-colors duration-300 hover:text-content dark:hover:text-content-dark"
                                 >
                                     {item.label}
                                 </a>

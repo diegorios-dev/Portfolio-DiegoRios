@@ -144,7 +144,7 @@ const HomePortfolio: React.FC<Props> = ({
                             key={index}
                             ref={(el) => { cardsRef.current[index] = el; }}
                             className={classNames(
-                                'portfolio-card flex flex-col rounded-3xl p-6 lg:p-8 lg:pb-4 transition-all duration-500 hover:shadow-2xl',
+                                'portfolio-card flex flex-col rounded-3xl p-6 lg:p-8 lg:pb-4 transition-all duration-500 hover:shadow-xl',
                                 index % 2 === 2 || index % 3 === 0
                                     ? 'xl:col-span-7'
                                     : 'xl:col-span-9',
@@ -190,14 +190,14 @@ const HomePortfolio: React.FC<Props> = ({
                                         )}
                                 </Swiper>
                                 <div
-                                    className="absolute z-10 top-0 left-0 w-full h-full rounded-3xl flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-100"
+                                    className="absolute z-10 top-0 left-0 w-full h-full rounded-3xl flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-75"
                                     style={{
                                         background:
-                                            'radial-gradient(50% 50% at 50% 50%, rgba(217, 217, 217, 0) 0%, #FFFFFF 100%)',
+                                            'radial-gradient(50% 50% at 50% 50%, rgba(217, 217, 217, 0) 0%, rgba(255, 255, 255, 0.65) 100%)',
                                     }}
                                 >
                                     <div className="px-6 py-4 bg-appText rounded-[32px] leading-none font-medium tracking-[-0.41px] text-white">
-                                        Ver caso
+                                        Ver website
                                     </div>
                                 </div>
                             </a>

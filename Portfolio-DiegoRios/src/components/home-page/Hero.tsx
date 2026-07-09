@@ -183,14 +183,6 @@ const HomeHero: React.FC<Props> = ({title, description, image, valueProps}) => {
                             {/* CTAs */}
                             <div ref={ctaRef} className="flex flex-col sm:flex-row gap-3 mb-8 lg:mb-10 w-full sm:w-auto">
                                 <a
-                                    href="/contact"
-                                    className="relative flex items-center justify-center px-5 py-3.5 rounded-xl bg-accent-blue dark:bg-accent-blue-dark text-white text-sm font-medium transition-all duration-300 hover:scale-[1.05] shadow-lg shadow-accent-blue/20 dark:shadow-accent-blue-dark/20 overflow-hidden group"
-                                >
-                                    <span className="relative z-10">Iniciar proyecto</span>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-accent-blue-dark to-accent-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                                </a>
-                                <a
                                     href="/portfolio"
                                     className="relative flex items-center justify-center px-5 py-3.5 rounded-xl border border-border-muted dark:border-white/20 text-sm font-medium text-content-muted dark:text-content-dark-muted transition-all duration-300 hover:bg-content dark:hover:bg-content-dark hover:text-content-inverted dark:hover:text-content-dark-inverted hover:border-content dark:hover:border-content-dark overflow-hidden group"
                                 >
