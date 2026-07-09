@@ -211,7 +211,7 @@ const Header: React.FC = () => {
                             <li key={index}>
                                 <a
                                     href={item.href}
-                                    className="text-base leading-none font-medium font-display tracking-[-0.41px] transition-colors duration-300 hover:text-content dark:hover:text-content-dark"
+                                    className="text-xl leading-none font-medium font-display tracking-[-0.41px] transition-colors duration-300 hover:text-content dark:hover:text-content-dark"
                                 >
                                     {item.label}
                                 </a>

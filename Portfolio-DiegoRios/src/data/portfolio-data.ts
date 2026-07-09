@@ -163,7 +163,7 @@ export const portfolioData = {
                 theme: '#6366F1',
                 cover_image: {
                     alt: 'proyectTwo',
-                    src: '/proyectTwo.png',
+                    src: '/portada1.png',
                     width: 800,
                     height: 600
                 },
@@ -176,7 +176,7 @@ export const portfolioData = {
                 gallery: [
                     {
                         alt: 'proyectTwo',
-                        src: '/proyectTwo-App.png',
+                        src: '/portada2.png',
                         width: 800,
                         height: 600
                     }
