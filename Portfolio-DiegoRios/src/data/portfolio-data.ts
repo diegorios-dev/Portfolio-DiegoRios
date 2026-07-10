@@ -243,7 +243,7 @@ export const portfolioData = {
                 },
                 categories: ['React', 'Laravel', 'MySQL', 'TypeScript', 'Tailwind CSS'],
                 cta: 'Ver caso',
-                live_url: '',
+                live_url: 'https://plataforma-web-conicet-5s14.vercel.app/',
                 github_links: {
                     frontend: 'https://github.com/diegorios-dev/PlataformaWeb-Conicet',
                     backend: 'https://github.com/diegorios-dev/Backend-Pluvia-Conicet',
